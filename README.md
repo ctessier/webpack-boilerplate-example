@@ -4,6 +4,7 @@ A Webpack configuration boilerplate example with Babel, React, ESLint and more..
 
 * [Webpack initial setup](#webpack-initial-setup)
 * [Checklist](#checklist)
+* [Going deeper](#going-deeper)
 
 ## Webpack initial setup
 
@@ -63,3 +64,10 @@ Finally, we need to create our application entry file.
 - [ ] Bundle Analyzer
 - [ ] Code-splitting
 - [ ] Html Loader with multi-outputs
+
+## Going deeper
+
+- cross-env
+- webpack performance `maxEntrypointSize`
+- webpack merge
+- production source maps
