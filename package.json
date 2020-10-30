@@ -1,0 +1,32 @@
+{
+  "name": "webpack-boilerplate-example",
+  "version": "1.0.0",
+  "description": "A Webpack configuration boilerplate example with Babel, React, ESLint, testing, and more...",
+  "scripts": {
+    "build": "rm -rf ./dist && webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctessier/webpack-boilerplate-example.git"
+  },
+  "keywords": [
+    "webpack",
+    "boilerplate",
+    "example",
+    "babel",
+    "react",
+    "eslint",
+    "testing"
+  ],
+  "author": "Clément Tessier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ctessier/webpack-boilerplate-example/issues"
+  },
+  "homepage": "https://github.com/ctessier/webpack-boilerplate-example#readme",
+  "devDependencies": {
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
+  }
+}
