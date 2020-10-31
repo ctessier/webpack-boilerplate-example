@@ -16,14 +16,23 @@ $ npm i --save-dev webpack webpack-cli
 ```
 
 #### `package.json`
+
 ```diff
+   "description": "A Webpack configuration boilerplate example with Babel, React, ESLint, testing, and more...",
    "scripts": {
-+    "build": "webpack --mode production"
-   }
-+  "devDependencies": {
++    "build": "webpack",
+     "test": "echo \"Error: no test specified\" && exit 1"
+ },
+```
+
+```diff
+   },
+   "homepage": "https://github.com/ctessier/webpack-boilerplate-example#readme",
+   "devDependencies": {
 +    "webpack": "^5.3.2",
 +    "webpack-cli": "^4.1.0"
-+  }
+   }
+ }
 ```
 
 Even though Webpack can work without any configuration file since version 4, one is necessary for this boilerplate. During the initial setup, it allows us to change the default entry and output files.
@@ -31,15 +40,15 @@ Even though Webpack can work without any configuration file since version 4, one
 #### `webpack.config.js`
 
 ```diff
-+   const path = require('path');
++const path = require('path');
 +
-+   module.exports = {
-+     entry: './src/App.js',
-+     output: {
-+       filename: 'app.js',
-+       path: path.resolve(__dirname, 'dist'),
-+     },
-+   };
++module.exports = {
++  entry: './src/App.js',
++  output: {
++    filename: 'app.js',
++    path: path.resolve(__dirname, 'dist'),
++  },
++};
 ```
 
 Finally, we need to create our application entry file.
@@ -47,7 +56,7 @@ Finally, we need to create our application entry file.
 #### `src/App.js`
 
 ```diff
-+   console.log('Hello from App.js');
++console.log('Hello from App.js');
 ```
 
 ## Babel for React
@@ -67,18 +76,21 @@ $ npm i --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-reac
 #### `package.json`
 
 ```diff
-   "devDependencies": {
-+     "@babel/core": "^7.12.3",
-+     "@babel/preset-env": "^7.12.1",
-+     "@babel/preset-react": "^7.12.1",
-+     "babel-loader": "^8.1.0",
-      "webpack": "^5.3.2",
-      "webpack-cli": "^4.1.0"
    },
-+   "dependencies": {
-+     "react": "^17.0.1",
-+     "react-dom": "^17.0.1"
-+   }
+   "homepage": "https://github.com/ctessier/webpack-boilerplate-example#readme",
+   "devDependencies": {
++    "@babel/core": "^7.12.3",
++    "@babel/preset-env": "^7.12.1",
++    "@babel/preset-react": "^7.12.1",
++    "babel-loader": "^8.1.0",
+     "webpack": "^5.3.2",
+     "webpack-cli": "^4.1.0"
++  },
++  "dependencies": {
++    "react": "^17.0.1",
++    "react-dom": "^17.0.1"
+   }
+ }
 ```
 
 Then we need to tell Webpack to use the `babel-loader` on all `.js` and `.jsx` files.
@@ -86,21 +98,21 @@ Then we need to tell Webpack to use the `babel-loader` on all `.js` and `.jsx` f
 #### `webpack.config.js`
 
 ```diff
-      filename: 'app.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
-+   module: {
-+     rules: [
-+       {
-+         test: /\.(js|jsx)$/,
-+         exclude: /node_modules/,
-+         use: {
-+           loader: "babel-loader",
-+         },
-+       },
-+     ],
-+   },
-  };
+     filename: 'app.js',
+     path: path.resolve(__dirname, 'dist'),
+   },
++  module: {
++    rules: [
++      {
++        test: /\.(js|jsx)$/,
++        exclude: /node_modules/,
++        use: {
++          loader: "babel-loader",
++        },
++      },
++    ],
++  },
+ };
 ```
 
 Finally, let's inform Babel to use the right presets, and we can add some React to our application!
@@ -108,22 +120,22 @@ Finally, let's inform Babel to use the right presets, and we can add some React 
 #### `.babelrc`
 
 ```diff
-+  {
-+    "presets": ["@babel/preset-env", "@babel/preset-react"]
-+  }
++{
++  "presets": ["@babel/preset-env", "@babel/preset-react"]
++}
 ```
 
 #### `src/App.js`
 
 ```diff
--  console.log('Hello from App.js');
-+  import React from 'react';
-+  import ReactDOM from 'react-dom';
+-console.log('Hello from App.js');
++import React from 'react';
++import ReactDOM from 'react-dom';
 +
-+  ReactDOM.render(
-+    <h1>Hello, world!</h1>,
-+    document.getElementById('root')
-+  );
++ReactDOM.render(
++  <h1>Hello, world!</h1>,
++  document.getElementById('root')
++);
 ```
 
 ## Checklist
