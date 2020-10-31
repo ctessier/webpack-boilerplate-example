@@ -1,4 +1,7 @@
-# Webpack Boilerplate Example
+# 📦☕ Webpack Boilerplate Example
+
+[![Dependencies](https://img.shields.io/david/ctessier/webpack-boilerplate-example?style=flat-square)](https://github.com/ctessier/webpack-boilerplate-example)
+[![License](https://img.shields.io/github/license/ctessier/webpack-boilerplate-example?color=%23B2878B&style=flat-square)](https://github.com/ctessier/webpack-boilerplate-example)
 
 A Webpack configuration boilerplate example with Babel, React, ESLint and more...
 
