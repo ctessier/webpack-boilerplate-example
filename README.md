@@ -11,7 +11,7 @@ A Webpack configuration boilerplate example with Babel, React, ESLint and more..
 
 First we need to install `webpack` and `webpack-cli` as `devDependencies`.
 
-```bash
+```shell
 $ npm i --save-dev webpack webpack-cli
 ```
 
@@ -63,13 +63,13 @@ Finally, we need to create our application entry file.
 
 Here, we are going to install React.js.
 
-```bash
+```shell
 $ npm i --save react react-dom
 ```
 
 Because React uses ES2015 and other specific syntax, we need to transpile the code to make it compatible with most browsers. Babel helps us with that thanks to the `babel-loader`. Two presets are required.
 
-```bash
+```shell
 $ npm i --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react
 ```
 
