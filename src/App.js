@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import Button from 'components/Button.js';
+
 class App extends Component {
   state = { toggle: false }
 
@@ -12,8 +14,7 @@ class App extends Component {
     return (
       <>
         <h1>Hello, world!</h1>
-        {this.state.toggle && <p>Hey There!</p>}
-        <button onClick={this.toggle}>Toggle Me!</button>
+        <Button onClick={this.toggle}>{toggle ? 'Yeah! Again!' : 'Toggle Me!'}</Button>
       </>
     )
   }

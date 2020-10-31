@@ -9,6 +9,7 @@ A Webpack configuration boilerplate example with Babel, React, ESLint and more..
 * [Babel for React](#babel-for-react)
 * [Babel plugins](#babel-plugins)
   * [Class properties](#class-properties)
+  * [Module resolver](#module-resolver)
 * [Checklist](#checklist)
 * [Going deeper](#going-deeper)
 
@@ -186,8 +187,35 @@ $ npm i --save-dev @babel/plugin-proposal-class-properties
  }
 ```
 
-###
+### Module resolver
 
+This plugin allows to import modules using absolute paths, relative to a configured path, like so:
+
+```diff
+-import Button from './components/Button';
++import Button from 'components/Button';
+```
+
+Let's install the plugin and configure it:
+
+```shell
+$ npm i --save-dev babel-plugin-module-resolver
+```
+
+#### `.babelrc`
+
+```diff
+ {
+   "presets": ["@babel/preset-env", "@babel/preset-react"],
+-  "plugins": ["@babel/plugin-proposal-class-properties"]
++  "plugins": [
++    "@babel/plugin-proposal-class-properties",
++    ["module-resolver", {
++      "root": ["./src"]
++    }]
++  ]
+ }
+ ```
 
 ## Checklist
 
@@ -212,3 +240,4 @@ $ npm i --save-dev @babel/plugin-proposal-class-properties
 - webpack performance `maxEntrypointSize`
 - webpack merge
 - production source maps
+- other plugins (see [https://github.com/facebook/create-react-app/blob/master/packages/babel-preset-react-app/package.json](https://github.com/facebook/create-react-app/blob/master/packages/babel-preset-react-app/package.json))
