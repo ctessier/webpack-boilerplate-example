@@ -7,6 +7,8 @@ A Webpack configuration boilerplate example with Babel, React, ESLint and more..
 
 * [Webpack initial setup](#webpack-initial-setup)
 * [Babel for React](#babel-for-react)
+* [Babel plugins](#babel-plugins)
+  * [Class properties](#class-properties)
 * [Checklist](#checklist)
 * [Going deeper](#going-deeper)
 
@@ -140,6 +142,52 @@ Finally, let's inform Babel to use the right presets, and we can add some React 
 +  document.getElementById('root')
 +);
 ```
+
+## Babel plugins
+
+Here we are going to add a few plugins to the Babel configuration.
+
+### Class properties
+
+This plugin allows to add properties to our class like so:
+
+```diff
+ class MyComponent extends React.Component {
+-  constructor(props) {
+-    super(props)
+-    this.state({ toggle: false })
+-  }
++  state = { toggle: false }
+
+-  toggle() {
++  toggle = () => {
+     this.setState(prevState => ({ toggle: !prevState.toggle }))
+   }
+
+   render() {
+     return <p>I am {this.state.toggle ? 'toggled' : 'not toggled'}</p>
+   }
+ }
+```
+
+We need to install the [babel-plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) plugin.
+
+```shell
+$ npm i --save-dev @babel/plugin-proposal-class-properties
+```
+
+#### `.babelrc`
+
+```diff
+ {
+-  "presets": ["@babel/preset-env", "@babel/preset-react"]
++  "presets": ["@babel/preset-env", "@babel/preset-react"],
++  "plugins": ["@babel/plugin-proposal-class-properties"]
+ }
+```
+
+###
+
 
 ## Checklist
 
