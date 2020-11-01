@@ -10,6 +10,7 @@ A Webpack configuration boilerplate example with Babel, React, ESLint and more..
 * [Babel plugins](#babel-plugins)
   * [Class properties](#class-properties)
   * [Module resolver](#module-resolver)
+* [ESLint check](#eslint-check)
 * [Checklist](#checklist)
 * [Going deeper](#going-deeper)
 
@@ -215,14 +216,101 @@ $ npm i --save-dev babel-plugin-module-resolver
 +    }]
 +  ]
  }
- ```
+```
+
+## ESLint check
+
+[ESLint](https://eslint.org/) is a linter for Javascript. It helps developers following code style rules defined for the project.
+
+Because we use React, we need to following `devDependencies`:
+
+* `eslint`
+* `@babel/eslint-parser` brings Babel features for ESLint so it can analyze modern Javascript
+* `eslint-config-airbnb` provides a set of predefined rules
+* `eslint-plugin-import` brings linting for import/export syntax
+* `eslint-plugin-react` provides a set of predefined rules for React
+* `eslint-webpack-plugin` allows to run the linter while bundling
+* `eslint-plugin-jsx-a11y` provides rules for accessibility (peer dependency of the Airbnb package)
+* `eslint-plugin-react-hooks` provides rules for React hooks (peer dependency of the Airbnb package)
+
+```shell
+$ npm i --save-dev eslint @babel/eslint-parser eslint-plugin-import eslint-config-airbnb eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+```
+
+Then we need to provide ESLint with a configuration file. It is possible to run `eslint --init` to automatically generate one.
+
+#### `.eslintrc`
+
+```diff
++{
++   "env": {
++     "browser": true,
++     "es2021": true
++   },
++   "extends": [
++     "plugin:react/recommended",
++     "airbnb"
++   ],
++   "parser": "@babel/eslint-parser",
++   "parserOptions": {
++     "ecmaFeatures": {
++       "jsx": true
++     },
++     "ecmaVersion": 12,
++     "sourceType": "module"
++   },
++   "plugins": [
++     "react"
++   ],
++   "settings": {
++     "import/resolver": {
++       "node": {
++         "extensions": [".js"],
++         "paths": ["./src"]
++       }
++     }
++   },
++   "rules": {
++     "import/extensions": "off",
++     "react/jsx-props-no-spreading": ["warn", { "html": "ignore" }],
++     "react/state-in-constructor": ["error", "never"]
++  }
++}
+```
+
+Finally, to run ESLint when bundling, or via a NPM command:
+
+#### `webpack.config.js`
+
+```diff
+   mode: 'development',
+   entry: './src/App.jsx',
++  plugins: [
++    new ESLintPlugin({
++      files: 'src',
++      extensions: ['js', 'jsx'],
++    }),
++  ],
+   output: {
+     filename: 'app.js',
+```
+
+#### `package.json`
+
+```diff
+   "scripts": {
+     "build": "webpack --mode development",
++    "lint": "eslint src --ext js,jsx",
+     "test": "echo \"Error: no test specified\" && exit 1"
+   },
+```
 
 ## Checklist
 
 - [x] Webpack initial setup
 - [x] Babel loader for React
 - [ ] Babel plugins
-- [ ] ESLint check
+- [x] ESLint check
 - [ ] Html Loader and hot reloading
 - [ ] Multi-outputs
 - [ ] Source map files
@@ -240,4 +328,6 @@ $ npm i --save-dev babel-plugin-module-resolver
 - webpack performance `maxEntrypointSize`
 - webpack merge
 - production source maps
+- transform-runtime for optimizing build size
 - other plugins (see [https://github.com/facebook/create-react-app/blob/master/packages/babel-preset-react-app/package.json](https://github.com/facebook/create-react-app/blob/master/packages/babel-preset-react-app/package.json))
+- rule for ordering the imports (eslint/order)

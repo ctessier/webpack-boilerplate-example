@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A Webpack configuration boilerplate example with Babel, React, ESLint, testing, and more...",
   "scripts": {
-    "build": "rm -rf ./dist && webpack",
+    "build": "webpack --mode development",
     "lint": "eslint src --ext js,jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
